@@ -1,3 +1,10 @@
+// 1. O Squirrel Startup deve vir PRIMEIRO de tudo
+if (require('electron-squirrel-startup')) {
+    // Se o Windows estiver apenas criando atalhos, o app fecha aqui
+    return; 
+}
+
+// 2. Importações (Apenas uma vez)
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
@@ -9,7 +16,7 @@ function createWindow() {
     height: 450,
     frame: false,
     resizable: false,
-    // ATUALIZADO: Agora busca o arquivo favicon.ico
+    // Garante que o ícone favicon.ico seja usado na barra de tarefas
     icon: path.join(__dirname, 'favicon.ico'), 
     webPreferences: {
       nodeIntegration: true,
@@ -25,7 +32,7 @@ function createWindow() {
     if (win) win.minimize();
   });
 
-  // Controle de restaurar janela
+  // Controle de restaurar janela (quando o timer acaba)
   ipcMain.on('mostrar-janela', () => {
     if (win) {
       if (win.isMinimized()) win.restore();
