@@ -1,0 +1,146 @@
+/* Importação da fonte pixelada */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
+body, html { 
+    margin: 0; 
+    padding: 0; 
+    width: 380px; 
+    height: 450px; 
+    overflow: hidden; 
+    font-family: 'Pixelify Sans', sans-serif; 
+}
+
+.app-window { 
+    /* FUNDO NÍTIDO E ADAPTÁVEL */
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), /* Filtro para não atrapalhar o conteúdo */
+        url('nuvens.gif'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: pixelated; /* Deixa o GIF nítido sem desfoque */
+    
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    border: 6px solid #5D4037; 
+    box-sizing: border-box; 
+}
+
+header { 
+    background-color: #FFD56B; 
+    border-bottom: 6px solid #5D4037; 
+    padding: 10px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    -webkit-app-region: drag;
+    z-index: 10;
+}
+
+.window-controls { display: flex; gap: 10px; -webkit-app-region: no-drag; }
+
+.nav-btn, .min-btn, .close-btn { 
+    cursor: pointer; 
+    font-weight: bold; 
+    color: #5D4037; 
+    padding: 0 5px; 
+    -webkit-app-region: no-drag; 
+    user-select: none;
+}
+
+#back-btn { font-size: 1.2rem; }
+
+.content { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ALINHAMENTO DE BOTÕES (IGUAL EM TODAS AS TELAS) */
+.start-menu-btns, .action-btns { 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    gap: 30px; /* Espaço perfeito entre os botões */
+    margin-top: 20px; 
+    width: 100%;
+}
+
+.egg-selection-grid { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    width: 100%; 
+    margin-top: 10px; 
+}
+
+/* CARDS DOS OVOS */
+.egg-card { 
+    width: 130px; 
+    background-color: #fef6b5; 
+    border: 3px solid #5D4037;
+    border-radius: 10px; 
+    padding: 12px 0; 
+    cursor: pointer; 
+    transition: transform 0.2s;
+    box-shadow: 4px 4px 0 rgba(93, 64, 55, 0.2);
+    image-rendering: pixelated;
+}
+
+.egg-card:hover { transform: scale(1.05); background-color: #FFF176; }
+.egg-card img { width: 55px; image-rendering: pixelated; }
+.egg-card p { margin: 5px 0 0; font-weight: bold; color: #5D4037; font-size: 0.85rem; }
+
+/* TEXTOS COM SOMBRA PARA LEITURA FÁCIL */
+.pixel-text-black, .sub-title, #display {
+    color: #5D4037;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8); /* Sombra clara para destacar do GIF */
+}
+
+#display { font-size: 4rem; font-weight: bold; margin: 10px 0; }
+
+.egg-main-img { 
+    width: 120px; 
+    image-rendering: pixelated; 
+    margin-bottom: 15px; 
+}
+
+/* ESTILO DOS BOTÕES START, YEE, NAH, VOLTAR, SAIR */
+.start-btn, .action-btn { 
+    background: #FFB7A1; 
+    border: 3px solid #5D4037; 
+    padding: 10px 25px; 
+    font-family: 'Pixelify Sans'; 
+    font-weight: bold; 
+    cursor: pointer; 
+    box-shadow: 4px 4px 0 #5D4037;
+    min-width: 90px;
+    color: #5D4037;
+}
+
+.action-btn:active, .start-btn:active { 
+    box-shadow: none; 
+    transform: translate(2px, 2px); 
+}
+/* Animação de entrada suave para as telas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#start-screen, #timer-screen, #countdown-screen, #aviso {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Garante que o conteúdo não quebre durante a animação */
+.content > div {
+    width: 100%;
+}
