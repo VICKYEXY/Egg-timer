@@ -1,5 +1,5 @@
 {
-  "name": "egg-timer",
+  "name": "egg",
   "version": "1.0.0",
   "description": "Um timer fofo para cozinhar ovos",
   "main": "main.js",
